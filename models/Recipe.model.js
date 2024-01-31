@@ -17,6 +17,6 @@ const recipeSchema = Schema({
   created: { type: Date, default: Date.now },
 });
 
-const Recipe = mongoose.model("Recipe", recipeSchema);
+const Recipe = model("Recipe", recipeSchema);
 
 module.exports = Recipe;
