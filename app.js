@@ -64,7 +64,7 @@ app.post("/recipes", async (req, res, next) => {
 app.get("/recipes", async (req, res, next) => {
   try {
     const AllRecipes = await Recipe.find({});
-    res.json(AllRecipes);
+    res.status(200).json(AllRecipes);
   } catch (error) {
     res
       .status(500)
@@ -74,6 +74,18 @@ app.get("/recipes", async (req, res, next) => {
 
 //  Iteration 5 - Get a Single Recipe
 //  GET  /recipes/:id route
+
+app.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const OneRecipe = await Recipe.findById(id);
+    res.status(200).json(OneRecipe);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Cannot retrieve this recipe", error: error.message });
+  }
+});
 
 //  Iteration 6 - Update a Single Recipe
 //  PUT  /recipes/:id route
